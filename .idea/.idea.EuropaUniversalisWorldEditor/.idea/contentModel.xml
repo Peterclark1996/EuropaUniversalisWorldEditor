@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Pete\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Pete\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_EuropaUniversalisWorldEditor.-781362738.00" t="ExcludeRecursive" />
+    <e p="G:\_Coding Projects\EuropaUniversalisWorldEditor" t="IncludeFlat">
+      <e p="EuropaUniversalisWorldEditor" t="IncludeRecursive">
+        <e p="AssemblyInfo.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Camera.cs" t="Include" />
+        <e p="EuropaUniversalisWorldEditor.csproj" t="IncludeRecursive" />
+        <e p="GlobalSettings.cs" t="Include" />
+        <e p="Mod.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="win10-x64" t="Include">
+                <e p="EuropaUniversalisWorldEditor.AssemblyInfo.cs" t="Include" />
+                <e p="UI" t="Include">
+                  <e p="App.g.cs" t="Include" />
+                  <e p="MainWindow.g.cs" t="Include" />
+                  <e p="SetupWindow.g.cs" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Pixel.cs" t="Include" />
+        <e p="ProvinceMap.cs" t="Include" />
+        <e p="UI" t="Include">
+          <e p="App.xaml" t="Include" />
+          <e p="App.xaml.cs" t="Include" />
+          <e p="MainWindow.xaml" t="Include" />
+          <e p="MainWindow.xaml.cs" t="Include" />
+          <e p="SetupWindow.xaml" t="Include" />
+          <e p="SetupWindow.xaml.cs" t="Include" />
+        </e>
+        <e p="World.cs" t="Include" />
+        <e p="WorldSettings.cs" t="Include" />
+      </e>
+      <e p="EuropaUniversalisWorldEditor.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
