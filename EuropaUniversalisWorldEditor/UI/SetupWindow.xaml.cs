@@ -47,6 +47,7 @@ namespace EuropaUniversalisWorldEditor.UI
         private void ModsPathOpenClick(object sender, System.Windows.RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
             {
                 ModsPathText.Text = openFileDialog.FileName;
             }

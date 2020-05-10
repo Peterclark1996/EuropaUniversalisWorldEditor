@@ -11,6 +11,12 @@ namespace EuropaUniversalisWorldEditor
 
         public WorldSettings(int width, int height)
         {
+            ReferenceImage = new BitmapImage();
+            ReferenceImage.BeginInit();
+            ReferenceImage.DecodePixelHeight = height;
+            ReferenceImage.DecodePixelWidth = width;
+            ReferenceImage.EndInit();
+            
             Width = width;
             Height = height;
         }
@@ -18,13 +24,8 @@ namespace EuropaUniversalisWorldEditor
         public WorldSettings(string path)
         {
             ReferenceImage = new BitmapImage(new Uri(path));
-            Width = (int)ReferenceImage.Width;
-            Height = (int)ReferenceImage.Height;
-        }
-
-        public bool IsNewWorld()
-        {
-            return ReferenceImage == null;
+            Width = ReferenceImage.PixelWidth;
+            Height = ReferenceImage.PixelHeight;
         }
     }
 }
