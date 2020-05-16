@@ -3,16 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:EuropaUniversalisWorldEditor"
         mc:Ignorable="d"
-        Title="EU4 Unofficial World Editor" Height="720" Width="1280" FocusManager.FocusedElement="{Binding ElementName=Canvas}">
-    
-    <Canvas Name="Canvas" KeyDown="CanvasKeyDown" KeyUp="CanvasKeyUp" MouseWheel="CanvasMouseWheel" Focusable="True" >
+        Title="EU4 Unofficial World Editor" Width="1280" Height="720"
+        FocusManager.FocusedElement="{Binding ElementName=Canvas}">
+
+    <Canvas Name="Canvas"
+            KeyDown="CanvasKeyDown"
+            KeyUp="CanvasKeyUp"
+            MouseWheel="CanvasMouseWheel"
+            Focusable="True"
+            RenderOptions.EdgeMode = "Aliased">
         <Image Name="Background"
-               Width="1000"
-               Height="600"
-               VerticalAlignment="Center"
-               HorizontalAlignment="Center" />
+                       Width="1280"
+                       Height="720"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Stretch="Uniform"
+                       RenderOptions.EdgeMode = "Aliased"/>
     </Canvas>
-        
+
 </Window>

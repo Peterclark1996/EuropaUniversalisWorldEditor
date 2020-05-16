@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="Setup" Height="450" Width="800">
     <StackPanel>
-        <TextBlock Text="Mod Name:" />
-        <TextBox Name="ModNameText" />
-        
         <TextBlock Text="Game Path:" />
         <TextBox Name="GamePathText" />
         <Button Content="Open" Click="GamePathOpenClick"></Button>

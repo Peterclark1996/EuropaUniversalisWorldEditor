@@ -22,12 +22,6 @@ namespace EuropaUniversalisWorldEditor.UI
             get => ModsPathText.Text;
             set => ModsPathText.Text = value;
         }
-        
-        public string ModName
-        {
-            get => ModNameText.Text;
-            set => ModNameText.Text = value;
-        }
 
         private void OkClick(object sender, System.Windows.RoutedEventArgs e)
         {
