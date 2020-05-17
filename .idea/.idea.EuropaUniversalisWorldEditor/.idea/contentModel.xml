@@ -34,6 +34,7 @@
           <e p="SetupWindow.xaml" t="Include" />
           <e p="SetupWindow.xaml.cs" t="Include" />
         </e>
+        <e p="ViewPoint.cs" t="Include" />
         <e p="World.cs" t="Include" />
         <e p="WorldSettings.cs" t="Include" />
       </e>

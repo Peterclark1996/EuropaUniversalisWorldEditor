@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace EuropaUniversalisWorldEditor.UI
@@ -11,33 +9,21 @@ namespace EuropaUniversalisWorldEditor.UI
     public partial class MainWindow : Window
     {
         private GlobalSettings _globalSettings;
+        private ViewPoint _viewPoint;
         
         private Mod _currentMod;
         
-        private const int CameraSpeed = 5;
-        
-        private int _viewOffsetX = 0;
-        private int _viewOffsetY = 0;
-
-        private bool _movingDown = false;
-        private bool _movingUp = false;
-        private bool _movingLeft = false;
-        private bool _movingRight = false;
-
         public MainWindow()
         {
             LoadSettings();
 
             InitializeComponent();
             
+            _viewPoint = new ViewPoint(Background);
+            
             RenderOptions.SetBitmapScalingMode(Background, BitmapScalingMode.NearestNeighbor);
             RenderOptions.SetEdgeMode(Background, EdgeMode.Aliased);
             Background.Source = _currentMod.World.ProvinceMap.GetImage();
-            
-            var timer = new DispatcherTimer();
-            timer.Tick += new EventHandler(TickMovement);
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            timer.Start();
         }
 
         private void LoadSettings()
@@ -51,19 +37,6 @@ namespace EuropaUniversalisWorldEditor.UI
             
             _currentMod = new Mod(new World(new WorldSettings(_globalSettings.GamePath + "/map/provinces.bmp")));
         }
-        
-        private void TickMovement(object sender, EventArgs e)
-        {
-            if (_movingDown) _viewOffsetY -= CameraSpeed;
-            if (_movingUp) _viewOffsetY += CameraSpeed;
-            if (_movingLeft) _viewOffsetX += CameraSpeed;
-            if (_movingRight) _viewOffsetX -= CameraSpeed;
-            
-            var matrix = Background.RenderTransform.Value;
-            matrix.OffsetX = _viewOffsetX;
-            matrix.OffsetY = _viewOffsetY;
-            Background.RenderTransform = new MatrixTransform(matrix);
-        }
 
         private void CanvasKeyDown(object sender, KeyEventArgs e)
         {
@@ -71,19 +44,19 @@ namespace EuropaUniversalisWorldEditor.UI
             {
                 case Key.Down:
                 case Key.S:
-                    _movingDown = true;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Down, true);
                     break;
                 case Key.Up:
                 case Key.W:
-                    _movingUp = true;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Up, true);
                     break;
                 case Key.Left:
                 case Key.A:
-                    _movingLeft = true;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Left, true);
                     break;
                 case Key.Right:
                 case Key.D:
-                    _movingRight = true;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Right, true);
                     break;
             }
         }
@@ -94,37 +67,50 @@ namespace EuropaUniversalisWorldEditor.UI
             {
                 case Key.Down:
                 case Key.S:
-                    _movingDown = false;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Down, false);
                     break;
                 case Key.Up:
                 case Key.W:
-                    _movingUp = false;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Up, false);
                     break;
                 case Key.Left:
                 case Key.A:
-                    _movingLeft = false;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Left, false);
                     break;
                 case Key.Right:
                 case Key.D:
-                    _movingRight = false;
+                    _viewPoint.MovementChange(ViewPoint.Direction.Right, false);
                     break;
             }
         }
 
         private void CanvasMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            var matrix = Background.RenderTransform.Value;
-            
-            if (e.Delta > 0)
-            {
-                matrix.ScaleAt(1.5, 1.5, e.GetPosition(Canvas).X, e.GetPosition(Canvas).Y);
-            }
-            else
-            {
-                matrix.ScaleAt(1.0 / 1.5, 1.0 / 1.5, e.GetPosition(Canvas).X, e.GetPosition(Canvas).Y);
-            }
-
-            Background.RenderTransform = new MatrixTransform(matrix);
+            _viewPoint.ZoomChange((int)e.GetPosition(Canvas).X, (int)e.GetPosition(Canvas).Y, e.Delta);
+            // var matrix = Background.RenderTransform.Value;
+            //
+            // if (e.Delta > 0)
+            // {
+            //     if (_zoomCurrent < ZoomMax)
+            //     {
+            //         matrix.ScaleAt(1.5, 1.5, e.GetPosition(Canvas).X, e.GetPosition(Canvas).Y);
+            //         _viewOffsetX = (int)(_viewOffsetX * 1.5f);
+            //         _viewOffsetY = (int)(_viewOffsetY * 1.5f);
+            //         _zoomCurrent++;
+            //     }
+            // }
+            // else
+            // {
+            //     if (_zoomCurrent > ZoomMin)
+            //     {
+            //         matrix.ScaleAt(1.0 / 1.5, 1.0 / 1.5, e.GetPosition(Canvas).X, e.GetPosition(Canvas).Y);
+            //         _viewOffsetX = (int)(_viewOffsetX * (1.0 / 1.5));
+            //         _viewOffsetY = (int)(_viewOffsetY * (1.0 / 1.5));
+            //         _zoomCurrent--;
+            //     }
+            // }
+            //
+            // Background.RenderTransform = new MatrixTransform(matrix);
         }
     }
 }
