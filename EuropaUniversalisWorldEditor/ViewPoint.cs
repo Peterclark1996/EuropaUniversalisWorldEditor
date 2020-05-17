@@ -8,22 +8,24 @@ namespace EuropaUniversalisWorldEditor
     public class ViewPoint
     {
         private readonly Image _target;
-        
+
         private const int ZoomMax = 20;
         private const int ZoomMin = 0;
 
         private int _zoomCurrent = 5;
-        
+
         private const int CameraSpeed = 5;
-        
+
         private int _viewOffsetX = 0;
         private int _viewOffsetY = 0;
 
-        private bool _movingUp = false;
-        private bool _movingDown = false;
-        private bool _movingLeft = false;
-        private bool _movingRight = false;
-        
+        private bool _movingUp;
+        private bool _movingDown;
+        private bool _movingLeft;
+        private bool _movingRight;
+
+        private bool _locked;
+
         public enum Direction
         {
             Up,
@@ -31,10 +33,12 @@ namespace EuropaUniversalisWorldEditor
             Left,
             Right
         }
-        
+
         public ViewPoint(Image target)
         {
             _target = target;
+
+            Unlock();
             
             var timer = new DispatcherTimer();
             timer.Tick += TickMovement;
@@ -42,8 +46,28 @@ namespace EuropaUniversalisWorldEditor
             timer.Start();
         }
 
+        public void Lock()
+        {
+            _movingUp = false;
+            _movingDown = false;
+            _movingLeft = false;
+            _movingRight = false;
+            _locked = true;
+        }
+
+        public void Unlock()
+        {
+            _movingUp = false;
+            _movingDown = false;
+            _movingLeft = false;
+            _movingRight = false;
+            _locked = false;
+        }
+
         public void MovementChange(Direction dir, bool enable)
         {
+            if(_locked) return;
+            
             switch (dir)
             {
                 case Direction.Up:
@@ -65,15 +89,17 @@ namespace EuropaUniversalisWorldEditor
 
         public void ZoomChange(int x, int y, int amount)
         {
-            var matrix = _target.RenderTransform.Value;
+            if(_locked) return;
             
+            var matrix = _target.RenderTransform.Value;
+
             if (amount > 0)
             {
                 if (_zoomCurrent < ZoomMax)
                 {
                     matrix.ScaleAt(1.5, 1.5, x, y);
-                    _viewOffsetX = (int)(_viewOffsetX * 1.5f);
-                    _viewOffsetY = (int)(_viewOffsetY * 1.5f);
+                    _viewOffsetX = (int) (_viewOffsetX * 1.5f);
+                    _viewOffsetY = (int) (_viewOffsetY * 1.5f);
                     _zoomCurrent++;
                 }
             }
@@ -82,22 +108,24 @@ namespace EuropaUniversalisWorldEditor
                 if (_zoomCurrent > ZoomMin)
                 {
                     matrix.ScaleAt(1.0 / 1.5, 1.0 / 1.5, x, y);
-                    _viewOffsetX = (int)(_viewOffsetX * (1.0 / 1.5));
-                    _viewOffsetY = (int)(_viewOffsetY * (1.0 / 1.5));
+                    _viewOffsetX = (int) (_viewOffsetX * (1.0 / 1.5));
+                    _viewOffsetY = (int) (_viewOffsetY * (1.0 / 1.5));
                     _zoomCurrent--;
                 }
             }
 
             _target.RenderTransform = new MatrixTransform(matrix);
         }
-        
+
         private void TickMovement(object sender, EventArgs e)
         {
+            if(_locked) return;
+            
             if (_movingDown) _viewOffsetY -= CameraSpeed;
             if (_movingUp) _viewOffsetY += CameraSpeed;
             if (_movingLeft) _viewOffsetX += CameraSpeed;
             if (_movingRight) _viewOffsetX -= CameraSpeed;
-            
+
             var matrix = _target.RenderTransform.Value;
             matrix.OffsetX = _viewOffsetX;
             matrix.OffsetY = _viewOffsetY;

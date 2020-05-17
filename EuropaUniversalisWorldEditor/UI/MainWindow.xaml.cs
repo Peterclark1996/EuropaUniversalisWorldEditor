@@ -21,8 +21,6 @@ namespace EuropaUniversalisWorldEditor.UI
             
             _viewPoint = new ViewPoint(Background);
             
-            RenderOptions.SetBitmapScalingMode(Background, BitmapScalingMode.NearestNeighbor);
-            RenderOptions.SetEdgeMode(Background, EdgeMode.Aliased);
             Background.Source = _currentMod.World.ProvinceMap.GetImage();
         }
 
@@ -87,30 +85,11 @@ namespace EuropaUniversalisWorldEditor.UI
         private void CanvasMouseWheel(object sender, MouseWheelEventArgs e)
         {
             _viewPoint.ZoomChange((int)e.GetPosition(Canvas).X, (int)e.GetPosition(Canvas).Y, e.Delta);
-            // var matrix = Background.RenderTransform.Value;
-            //
-            // if (e.Delta > 0)
-            // {
-            //     if (_zoomCurrent < ZoomMax)
-            //     {
-            //         matrix.ScaleAt(1.5, 1.5, e.GetPosition(Canvas).X, e.GetPosition(Canvas).Y);
-            //         _viewOffsetX = (int)(_viewOffsetX * 1.5f);
-            //         _viewOffsetY = (int)(_viewOffsetY * 1.5f);
-            //         _zoomCurrent++;
-            //     }
-            // }
-            // else
-            // {
-            //     if (_zoomCurrent > ZoomMin)
-            //     {
-            //         matrix.ScaleAt(1.0 / 1.5, 1.0 / 1.5, e.GetPosition(Canvas).X, e.GetPosition(Canvas).Y);
-            //         _viewOffsetX = (int)(_viewOffsetX * (1.0 / 1.5));
-            //         _viewOffsetY = (int)(_viewOffsetY * (1.0 / 1.5));
-            //         _zoomCurrent--;
-            //     }
-            // }
-            //
-            // Background.RenderTransform = new MatrixTransform(matrix);
+        }
+
+        private void EditButtonClick(object sender, RoutedEventArgs e)
+        {
+            _viewPoint.Lock();
         }
     }
 }

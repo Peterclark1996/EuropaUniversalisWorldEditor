@@ -6,15 +6,19 @@
         xmlns:local="clr-namespace:EuropaUniversalisWorldEditor"
         mc:Ignorable="d"
         Title="Setup" Height="450" Width="800">
-    <StackPanel>
-        <TextBlock Text="Game Path:" />
-        <TextBox Name="GamePathText" />
-        <Button Content="Open" Click="GamePathOpenClick"></Button>
-        
-        <TextBlock Text="Mods Path:" />
-        <TextBox Name="ModsPathText" />
-        <Button Content="Open" Click="ModsPathOpenClick"></Button>
-        
-        <Button Content="OK" Click="OkClick" />
-    </StackPanel>
+
+    <Border Style="{StaticResource PropertyPanelBorder}">
+        <StackPanel>
+            <TextBlock Text="Game Path:" />
+            <TextBox Name="GamePathText" />
+            <Button Content="Open" Click="GamePathOpenClick" />
+
+            <TextBlock Text="Mods Path:" />
+            <TextBox Name="ModsPathText" />
+            <Button Content="Open" Click="ModsPathOpenClick" />
+
+            <Button Content="OK" Click="OkClick" />
+        </StackPanel>
+    </Border>
+
 </Window>

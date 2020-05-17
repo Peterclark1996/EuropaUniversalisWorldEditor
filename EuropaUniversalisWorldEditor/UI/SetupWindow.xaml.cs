@@ -23,12 +23,12 @@ namespace EuropaUniversalisWorldEditor.UI
             set => ModsPathText.Text = value;
         }
 
-        private void OkClick(object sender, System.Windows.RoutedEventArgs e)
+        private void OkClick(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
 
-        private void GamePathOpenClick(object sender, System.Windows.RoutedEventArgs e)
+        private void GamePathOpenClick(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
@@ -38,7 +38,7 @@ namespace EuropaUniversalisWorldEditor.UI
                 
         }
         
-        private void ModsPathOpenClick(object sender, System.Windows.RoutedEventArgs e)
+        private void ModsPathOpenClick(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)

@@ -11,15 +11,34 @@
             KeyDown="CanvasKeyDown"
             KeyUp="CanvasKeyUp"
             MouseWheel="CanvasMouseWheel"
-            Focusable="True"
-            RenderOptions.EdgeMode = "Aliased">
+            Focusable="True">
         <Image Name="Background"
-                       Width="1280"
-                       Height="720"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                       Stretch="Uniform"
-                       RenderOptions.EdgeMode = "Aliased"/>
+               Width="1280"
+               Height="720"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Stretch="Uniform"
+               RenderOptions.EdgeMode="Aliased"
+               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+        <Border Style="{StaticResource PropertyPanelBorder}">
+            <Grid Canvas.Left="0" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Grid.Column="0">Generate</Button>
+                <Button Grid.Row="0" Grid.Column="1" Click="EditButtonClick">Edit</Button>
+                <Label Grid.Row="1" Grid.Column="0">Province Name: </Label>
+                <Label Grid.Row="2" Grid.Column="0">Religion: </Label>
+                <Label Grid.Row="3" Grid.Column="0">Culture: </Label>
+            </Grid>
+        </Border>
     </Canvas>
 
 </Window>
