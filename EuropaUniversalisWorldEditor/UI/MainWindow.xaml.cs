@@ -9,7 +9,8 @@ namespace EuropaUniversalisWorldEditor.UI
     public partial class MainWindow : Window
     {
         private GlobalSettings _globalSettings;
-        private ViewPoint _viewPoint;
+        private readonly ViewPoint _viewPoint;
+        private readonly Selection _selection;
         
         private Mod _currentMod;
         
@@ -20,6 +21,7 @@ namespace EuropaUniversalisWorldEditor.UI
             InitializeComponent();
             
             _viewPoint = new ViewPoint(Background);
+            _selection = new Selection(Canvas, _currentMod);
             
             Background.Source = _currentMod.World.ProvinceMap.GetImage();
         }
@@ -90,6 +92,39 @@ namespace EuropaUniversalisWorldEditor.UI
         private void EditButtonClick(object sender, RoutedEventArgs e)
         {
             _viewPoint.Lock();
+        }
+
+        private void CanvasMouseMove(object sender, MouseEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                DrawPixel(MousePositionToPixelPosition(e.GetPosition(Background).X),
+                    MousePositionToPixelPosition(e.GetPosition(Background).Y));
+            }
+        }
+
+        private void CanvasMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                DrawPixel(MousePositionToPixelPosition(e.GetPosition(Background).X),
+                    MousePositionToPixelPosition(e.GetPosition(Background).Y));
+            }
+            else
+            {
+                _selection.SelectPixel(MousePositionToPixelPosition(e.GetPosition(Background).X),
+                    MousePositionToPixelPosition(e.GetPosition(Background).Y));
+            }
+        }
+
+        private int MousePositionToPixelPosition(double v)
+        {
+            return (int)(v * 4.41379310345d);//TODO FInd how to calculate this magic number
+        }
+
+        private void DrawPixel(int x, int y)
+        {
+            _currentMod.World.ProvinceMap.ModifyImagePixel(x, y, _selection.GetSelectedPixel());
         }
     }
 }

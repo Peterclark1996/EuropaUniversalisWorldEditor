@@ -13,6 +13,7 @@ namespace EuropaUniversalisWorldEditor
         private const int ZoomMin = 0;
 
         private int _zoomCurrent = 5;
+        private double _zoomScale = 1.0d;
 
         private const int CameraSpeed = 5;
 
@@ -98,8 +99,9 @@ namespace EuropaUniversalisWorldEditor
                 if (_zoomCurrent < ZoomMax)
                 {
                     matrix.ScaleAt(1.5, 1.5, x, y);
-                    _viewOffsetX = (int) (_viewOffsetX * 1.5f);
-                    _viewOffsetY = (int) (_viewOffsetY * 1.5f);
+                    _viewOffsetX = (int) (_viewOffsetX * 1.5f);//TODO Fix ratio
+                    _viewOffsetY = (int) (_viewOffsetY * 1.5f);//TODO Fix ratio
+                    _zoomScale *= 1.5;
                     _zoomCurrent++;
                 }
             }
@@ -108,13 +110,19 @@ namespace EuropaUniversalisWorldEditor
                 if (_zoomCurrent > ZoomMin)
                 {
                     matrix.ScaleAt(1.0 / 1.5, 1.0 / 1.5, x, y);
-                    _viewOffsetX = (int) (_viewOffsetX * (1.0 / 1.5));
-                    _viewOffsetY = (int) (_viewOffsetY * (1.0 / 1.5));
+                    _viewOffsetX = (int) (_viewOffsetX * (1.0 / 1.5));//TODO Fix ratio
+                    _viewOffsetY = (int) (_viewOffsetY * (1.0 / 1.5));//TODO Fix ratio
+                    _zoomScale *= 1.0 / 1.5;
                     _zoomCurrent--;
                 }
             }
 
             _target.RenderTransform = new MatrixTransform(matrix);
+        }
+
+        public double GetZoomScale()
+        {
+            return _zoomScale;
         }
 
         private void TickMovement(object sender, EventArgs e)

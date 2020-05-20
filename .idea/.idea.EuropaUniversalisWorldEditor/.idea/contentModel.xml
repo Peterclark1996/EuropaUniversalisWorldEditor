@@ -26,6 +26,7 @@
         </e>
         <e p="Pixel.cs" t="Include" />
         <e p="ProvinceMap.cs" t="Include" />
+        <e p="Selection.cs" t="Include" />
         <e p="UI" t="Include">
           <e p="App.xaml" t="Include" />
           <e p="App.xaml.cs" t="Include" />

@@ -74,8 +74,9 @@ namespace EuropaUniversalisWorldEditor
             }
         }
 
-        private void ModifyImagePixel(int x, int y, Pixel pixel)
+        public void ModifyImagePixel(int x, int y, Pixel pixel)
         {
+            _map[x, y] = pixel;
             var rect = new Int32Rect(x, y, 1, 1);
             byte[] byteArray = {pixel.B, pixel.G, pixel.R, 0};
             _image.WritePixels(rect, byteArray, 4, 0);

@@ -7,8 +7,7 @@
         <Style x:Key="PropertyPanelBorder" TargetType="Border">
             <Setter Property="BorderBrush" Value="Black" />
             <Setter Property="BorderThickness" Value="2" />
-            <Setter Property="CornerRadius" Value="3" />
-            <Setter Property="Background" Value="Silver"/>
+            <Setter Property="Background" Value="LightGray"/>
         </Style>
     </Application.Resources>
 </Application>

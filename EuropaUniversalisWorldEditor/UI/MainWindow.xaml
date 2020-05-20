@@ -11,6 +11,8 @@
             KeyDown="CanvasKeyDown"
             KeyUp="CanvasKeyUp"
             MouseWheel="CanvasMouseWheel"
+            MouseMove="CanvasMouseMove"
+            MouseDown="CanvasMouseDown"
             Focusable="True">
         <Image Name="Background"
                Width="1280"
@@ -21,10 +23,10 @@
                RenderOptions.EdgeMode="Aliased"
                RenderOptions.BitmapScalingMode="NearestNeighbor" />
         <Border Style="{StaticResource PropertyPanelBorder}">
-            <Grid Canvas.Left="0" Margin="10">
+            <Grid Name="Properties" Canvas.Left="0" Margin="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
