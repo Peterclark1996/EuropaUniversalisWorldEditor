@@ -9,7 +9,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="EuropaUniversalisWorldEditor.csproj" t="IncludeRecursive" />
         <e p="GlobalSettings.cs" t="Include" />
-        <e p="Mod.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -24,9 +23,14 @@
             </e>
           </e>
         </e>
-        <e p="Pixel.cs" t="Include" />
-        <e p="ProvinceMap.cs" t="Include" />
         <e p="Selection.cs" t="Include" />
+        <e p="State" t="Include">
+          <e p="Mod.cs" t="Include" />
+          <e p="Pixel.cs" t="Include" />
+          <e p="ProvinceMap.cs" t="Include" />
+          <e p="World.cs" t="Include" />
+          <e p="WorldSettings.cs" t="Include" />
+        </e>
         <e p="UI" t="Include">
           <e p="App.xaml" t="Include" />
           <e p="App.xaml.cs" t="Include" />
@@ -36,8 +40,6 @@
           <e p="SetupWindow.xaml.cs" t="Include" />
         </e>
         <e p="ViewPoint.cs" t="Include" />
-        <e p="World.cs" t="Include" />
-        <e p="WorldSettings.cs" t="Include" />
       </e>
       <e p="EuropaUniversalisWorldEditor.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />

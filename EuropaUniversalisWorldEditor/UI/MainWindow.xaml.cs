@@ -86,7 +86,7 @@ namespace EuropaUniversalisWorldEditor.UI
 
         private void CanvasMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            _viewPoint.ZoomChange((int)e.GetPosition(Canvas).X, (int)e.GetPosition(Canvas).Y, e.Delta);
+            _viewPoint.ZoomChange((int)e.GetPosition(Background).X, (int)e.GetPosition(Background).Y, e.Delta);
         }
 
         private void EditButtonClick(object sender, RoutedEventArgs e)
